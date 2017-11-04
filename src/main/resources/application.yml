@@ -1,8 +1,6 @@
 server:
   use-forward-headers: true
 
-flyway:
-  baseline-on-migrate: true
 spring:
 
   application:
