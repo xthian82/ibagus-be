@@ -329,7 +329,7 @@ insert into `medida` values (11, 'tn');
 insert into `medida` values (12, 'pulg/m');
 
 CREATE TABLE `material` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) NOT NULL,
   `medida_id` int(11) NOT NULL,
   `precio` decimal(18) NOT NULL,
