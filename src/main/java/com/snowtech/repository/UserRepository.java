@@ -1,9 +1,11 @@
 package com.snowtech.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.snowtech.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+@Component
+public interface UserRepository extends JpaRepository<User, Long> {
+
     User findByUsername(String username);
 }

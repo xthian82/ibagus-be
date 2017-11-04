@@ -20,5 +20,5 @@ public class Role {
 
     @Column(nullable = false, unique = true)
     private final String name;
-    
+
 }

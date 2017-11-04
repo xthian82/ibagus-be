@@ -1,11 +1,12 @@
 package com.snowtech.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.snowtech.entity.Document;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface DocumentRepository extends JpaRepository<Document, Long> {
 
-	Document findByFileName(String filename);
+    Document findByFileName(String filename);
 
 }

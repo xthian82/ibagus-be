@@ -20,5 +20,5 @@ public class Medida {
 
     @Column(nullable = false, unique = true)
     private String descripcion;
-    
+
 }
