@@ -1,5 +1,6 @@
 server:
   use-forward-headers: true
+  contextPath: /api/
 
 spring:
 
@@ -22,6 +23,10 @@ spring:
   jackson:
     property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
     default-property-inclusion: NON_NULL
+    deserialization:
+      fail-on-ignored-properties: false
+      fail-on-unknown-properties: false
+      fail-on-null-for-primitives: false
   
   jpa:
     show-sql: false

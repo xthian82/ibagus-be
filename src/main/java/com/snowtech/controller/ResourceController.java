@@ -1,6 +1,5 @@
 package com.snowtech.controller;
 
-import com.snowtech.config.Constants;
 import com.snowtech.entity.Document;
 import com.snowtech.service.ResourceService;
 import java.io.IOException;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(Constants.ApiVersionV1 + "/resource")
+@RequestMapping("/resource")
 class ResourceController {
 
     @Autowired
