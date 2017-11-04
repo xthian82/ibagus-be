@@ -1,0 +1,117 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+		cpdVersion = '1.0'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("de.aaschmid:gradle-cpd-plugin:${cpdVersion}")
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.1'
+	}
+}
+
+plugins {
+    id 'de.aaschmid.cpd' version '1.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'flyway'
+
+// ------ dev controls ------ 
+apply plugin: 'jacoco'
+// apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'cpd'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'https://plugins.gradle.org/m2/' }
+    maven { url 'https://repo.spring.io/libs-release' }
+	mavenCentral()
+}
+
+
+dependencies {
+    compileOnly('org.projectlombok:lombok:1.16.12')
+
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-autoconfigure")
+    // compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile ("org.springframework:spring-jdbc")
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	compile('org.flywaydb:flyway-core:4.0.3')
+	// compile('org.springframework.boot:spring-boot-starter-mail')
+	// compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.security.oauth:spring-security-oauth2:2.0.5.RELEASE')
+	//compile('org.springframework.session:spring-session')
+    compile('com.google.guava:guava:19.0')
+	
+	runtime('mysql:mysql-connector-java')
+	// runtime("com.h2database:h2")
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+jar {
+	baseName = 'ibagus-be'
+}
+
+/*
+checkstyle {
+    toolVersion = "7.6"
+    ignoreFailures = false
+    configFile = file("${rootDir}/config/checkstyle/google_checks.xml")
+} */
+
+findbugs {
+    toolVersion = "3.0.1"
+    ignoreFailures = true
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+pmd {
+    ignoreFailures = false
+    rulePriority = 3
+    toolVersion = '5.5.4'
+    // ruleSetFiles = files("${rootDir}/config/pmd/ruleset.xml")
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+cpd {
+    language = 'java'
+    toolVersion = '5.2.3'
+    minimumTokenCount = 100
+}
+
+cpdCheck {
+    reports {
+        text.enabled = false
+        xml.enabled = true
+    }
+    source = sourceSets.main.allJava
+}
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306/'
+    user = 'root'
+    password = 'xxxx'
+    schemas = ['mandua']
+}
