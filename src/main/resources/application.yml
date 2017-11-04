@@ -10,7 +10,6 @@ spring:
     active: #spring.profiles.active#
 
   datasource:
-    #url: jdbc:mysql://localhost:3306/docshare
     url: jdbc:mysql://localhost:3306/mandua
     username: root
     password: nirvana3
