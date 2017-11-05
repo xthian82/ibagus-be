@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,11 @@ public class Subrubro {
     @Id
     private Integer id;
 
+    @Size(min=3, max = 255)
     @Column(nullable = false, unique = true)
     private String descripcion;
 
+    @Size(max = 255)
     @Column
     private String nota;
 
