@@ -4,6 +4,8 @@ import com.snowtech.entity.Subrubro;
 import com.snowtech.service.SubrubroService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +22,8 @@ public class SubrubroController {
     private SubrubroService subrubroService;
 
     @GetMapping
-    public List<Subrubro> getAll() {
-        return subrubroService.getSubrubros();
+    public Page<Subrubro> getAll(Pageable pageable) {
+        return subrubroService.getSubrubros(pageable);
     }
 
     @GetMapping("/{id}")
